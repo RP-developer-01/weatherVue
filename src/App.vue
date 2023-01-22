@@ -1,12 +1,13 @@
 <template>
   <div class="wrapper">
-    <h1>Погодное приложение</h1>
-    <p>Узнать погоду в {{city == "" ? "вашем городе" : "«" + city + "»"}}</p>
-    <input type="text" v-model="city" placeholder="Введите город">
-    <button v-show="city != ''" @click="getWeather()">Получить погоду</button>
+    <h1>Weather app</h1>
+    <p>Check the weather in {{city == "" ? "your town" : "«" + city + "»"}}</p>
+    <input type="text" v-model="city" placeholder="Enter city">
+    <button v-show="city != ''" @click="getWeather()">Get weather</button>
     <p class="error">{{ error }}</p><br>
 
     <div v-if="info != null">
+      <p>{{ info }}</p>
       <p>{{ showTemp }}</p>
       <p>{{ showFeelsLike }}</p>
       <p>{{ showMinTemp }}</p>
@@ -28,22 +29,22 @@ export default {
   },
   computed: {
     showTemp() {
-      return "Температура: " + this.info.main.temp
+      return "Temperature: " + this.info.main.temp
     },
     showFeelsLike() {
-      return "Ощущается как: " + this.info.main.feels_like
+      return "As if: " + this.info.main.feels_like
     },
     showMinTemp() {
-      return "Минимальная температура: " + this.info.main.temp_min
+      return "Minimum temperature: " + this.info.main.temp_min
     },
     showMaxTemp() {
-      return "Максимальная температура: " + this.info.main.temp_max
+      return "Maximum temperature: " + this.info.main.temp_max
     },
   },
   methods: {
     getWeather() {
       if(this.city.trim().length < 2) {
-        this.error = "Нужно название более одного символа"
+        this.error = "More than one character name required"
         return false
       }
 
@@ -60,14 +61,13 @@ export default {
 .wrapper {
   width: 900px;
   height: 500px;
-  border-radius: 50px;
-  padding: 20px;
-  background: #311839;
-  -webkit-box-shadow: 0px 0px 10px 0px rgba(255,255,255, 0.5);
-  -moz-box-shadow: 0px 0px 10px 0px rgba(255, 255, 255, 0.5);
-  box-shadow: 0px 0px 10px 0px rgba(255,255,255, 0.5);
+  display: flex;
   text-align: center;
   color: #fff;
+  border-left: 2px solid #6e2d7d;
+  padding: 15px;
+  flex-direction: column;
+  align-items: flex-start;
 }
 
 .wrapper h1 {
@@ -85,7 +85,7 @@ export default {
   border-bottom: 2px solid #110813;
   color: #fcfcfc;
   font-size: 14px;
-  padding: 5px 8px;
+  padding: 5px 1px;
   outline: none;
 }
 
