@@ -1,13 +1,12 @@
 <template>
   <div class="wrapper">
     <h1>Weather app</h1>
-    <p>Check the weather in {{city == "" ? "your town" : "«" + city + "»"}}</p>
-    <input type="text" v-model="city" placeholder="Enter city">
-    <button v-show="city != ''" @click="getWeather()">Get weather</button>
-    <p class="error">{{ error }}</p><br>
+    <h4>Check the weather in {{city == "" ? "your town" : "«" + city + "»"}}</h4>
+    <div><input type="text" v-model="city" placeholder="Enter city">
+    <button v-show="city != ''" @click="getWeather()">Get weather</button></div>
+    <p class="error">{{ error }}</p>
 
-    <div v-if="info != null">
-      <p>{{ info }}</p>
+    <div v-if="info != null" class="info">
       <p>{{ showTemp }}</p>
       <p>{{ showFeelsLike }}</p>
       <p>{{ showMinTemp }}</p>
@@ -62,7 +61,6 @@ export default {
   width: 900px;
   height: 500px;
   display: flex;
-  text-align: center;
   color: #fff;
   border-left: 2px solid #6e2d7d;
   padding: 15px;
@@ -72,17 +70,23 @@ export default {
 
 .wrapper h1 {
   margin-top: 50px;
+  margin-bottom: 20px;
+}
+
+.wrapper h4 {
+  margin-bottom: 20px;
 }
 
 .wrapper p {
   margin-top: 20px;
+  color: #e3d2d2;
 }
 
 .wrapper input {
   margin-top: 30px;
   background: transparent;
   border: 0;
-  border-bottom: 2px solid #110813;
+  border-bottom: 2px solid #6e2d7d;
   color: #fcfcfc;
   font-size: 14px;
   padding: 5px 1px;
